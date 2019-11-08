@@ -9,6 +9,16 @@ heroku = Heroku(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://xxbkpfltxlaxeu:6c92bb396d604406d958a6f8bd270715f6950ae2d4ea6128c1d54775ce04ce4e@ec2-23-23-92-204.compute-1.amazonaws.com:5432/dc7ulvj7si5s6l"
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
+
+class Todo(db.Model):
+  __tablename__ = "todos"
+  id = db.Column(db.Integer, primary_key=True)
+  title = db.Column(db.String(100))
+  done = db.Column(db.Boolean)
+  def __init__(self, title, done):
+    self.title = title
+    self.done = done
+    
 class Review(db.Model):
    id = db.Column(db.Integer, primary_key=True)
    title = db.Column(db.String(100), unique=False)
