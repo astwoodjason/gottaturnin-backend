@@ -1,14 +1,12 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from flaskpip_marshmallow import Marshmallow
-import os
+from flask_marshmallow import Marshmallow
 from flask_heroku import Heroku
 from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 heroku = Heroku(app)
-basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = ""
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://xxbkpfltxlaxeu:6c92bb396d604406d958a6f8bd270715f6950ae2d4ea6128c1d54775ce04ce4e@ec2-23-23-92-204.compute-1.amazonaws.com:5432/dc7ulvj7si5s6l"
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 class Review(db.Model):
